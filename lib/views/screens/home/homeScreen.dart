@@ -6,6 +6,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:madinatic/themes.dart';
+import 'package:madinatic/views/screens/home/manageIt.dart';
 import 'package:madinatic/views/screens/home/signaleRisque.dart';
 import 'package:madinatic/views/widgets/TextUtils.dart';
 import 'package:madinatic/views/widgets/appbarWidget.dart';
@@ -139,7 +140,9 @@ class CardHome extends StatelessWidget {
   final String text;
 
   static var listCard = [
-    CardHome(icon: Icons.home_outlined, text: "Home"),
+    InkWell(onTap: () {
+     Get.to(()=> ManageItScreen()) ;
+    } ,child: CardHome(icon: Icons.home_outlined, text: "manage it")),
     CardHome(icon: Icons.newspaper, text: "Actualités"),
     InkWell( onTap: () {
      Get.to(()=> SignaleRisqueScreen()) ;

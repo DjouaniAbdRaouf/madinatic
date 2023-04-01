@@ -24,102 +24,135 @@ class _SignaleRisqueScreenState extends State<SignaleRisqueScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBarwidgetHomeScreen(title: "Anomalie"),
-      body: Padding(
-        padding: EdgeInsets.symmetric(
-            horizontal: PaddingManager.kheight,
-            vertical: PaddingManager.kheight2),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              'SIGNALER VOTRE PROBLEME',
-              style: GoogleFonts.lobster(
-                color: ColorManager.primaryColor,
-                fontSize: 20,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+              horizontal: PaddingManager.kheight,
+              vertical: PaddingManager.kheight2),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                'SIGNALER VOTRE PROBLEME',
+                style: GoogleFonts.lobster(
+                    color: ColorManager.primaryColor,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
               ),
-            ),
-            SizedBox(
-              height: PaddingManager.kheight,
-            ),
-            ChipsChoice<int>.single(
-              value: tag,
-              onChanged: (val) {
-                setState(() {
-                  tag = val;
-                  cat = ProblemeCategories.problemes[val];
-                });
-              },
-              choiceItems: C2Choice.listFrom<int, String>(
-                source: ProblemeCategories.problemes,
-                value: (i, v) => i,
-                label: (i, v) {
-                  return v;
+              SizedBox(
+                height: PaddingManager.kheight,
+              ),
+              ChipsChoice<int>.single(
+                value: tag,
+                onChanged: (val) {
+                  setState(() {
+                    tag = val;
+                    cat = ProblemeCategories.problemes[val];
+                  });
                 },
+                choiceItems: C2Choice.listFrom<int, String>(
+                  source: ProblemeCategories.problemes,
+                  value: (i, v) => i,
+                  label: (i, v) {
+                    return v;
+                  },
+                ),
+                choiceStyle: const C2ChipStyle(
+                    backgroundColor: Colors.blueGrey,
+                    checkmarkColor: Colors.blue),
+                choiceCheckmark: true,
+                wrapped: true,
               ),
-              choiceStyle: const C2ChipStyle(
-                  backgroundColor: Colors.blueGrey,
-                  checkmarkColor: Colors.blue),
-              choiceCheckmark: true,
-              wrapped: true,
-            ),
-            SizedBox(
-              height: PaddingManager.kheight,
-            ),
-            TextFormGest(
-              controller: TextEditingController(),
-              errormessage: "champ obligatoire",
-              hinttext: "Description du probleme",
-              icon: Icons.text_fields,
-              coloprefix: ColorManager.primaryColor,
-            ),
-            SizedBox(
-              height: PaddingManager.kheight,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                    child: Container(
-                  child: Column(
-                    children: [
-                      Image.asset(
-                        ImageManager.cam,
-                        height: 80,
-                      ),
-                      const SizedBox(
-                        height: 8,
-                      ),
-                      Text(
-                        "Camera",
-                        style: TextStyle(
-                            color: ColorManager.primaryColor, fontSize: 18 , fontWeight: FontWeight.w400),
-                      )
-                    ],
+              SizedBox(
+                height: PaddingManager.kheight,
+              ),
+              TextFormGest(
+                controller: TextEditingController(),
+                errormessage: "champ obligatoire",
+                hinttext: "Description du probleme",
+                icon: Icons.text_fields,
+                coloprefix: ColorManager.primaryColor,
+              ),
+              SizedBox(
+                height: PaddingManager.kheight,
+              ),
+                    Text(
+                'Choisir ou Prendre une photo',
+                style: GoogleFonts.lobster(
+                    color: ColorManager.primaryColor,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500),
+              ),
+              SizedBox(
+                height: PaddingManager.kheight,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                      child: Container(
+                    child: Column(
+                      children: [
+                        Image.asset(
+                          ImageManager.cam,
+                          height: 80,
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        Text(
+                          "Camera",
+                          style: TextStyle(
+                              color: ColorManager.primaryColor,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w400),
+                        )
+                      ],
+                    ),
+                  )),
+                  Expanded(
+                      child: Container(
+                    child: Column(
+                      children: [
+                        Image.asset(
+                          ImageManager.gallery,
+                          height: 80,
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        Text(
+                          "Gallerie",
+                          style: TextStyle(
+                              color: ColorManager.primaryColor,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w400),
+                        )
+                      ],
+                    ),
+                  )),
+                ],
+              ),
+              SizedBox(
+                height: PaddingManager.kheight,
+              ),
+              SizedBox(
+                height: 40,
+                width: double.infinity,
+                child: MaterialButton(
+                  onPressed: () {},
+                  color: ColorManager.primaryColor,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Text(
+                    "Valider l'opération",
+                    style: TextStyle(color: ColorManager.textColor),
                   ),
-                )),
-                Expanded(
-                    child: Container(
-                  child: Column(
-                    children: [
-                      Image.asset(
-                        ImageManager.gallery,
-                        height: 80,
-                      ),
-                      const SizedBox(
-                        height: 8,
-                      ),
-                      Text(
-                        "Gallerie",
-                        style: TextStyle(
-                            color: ColorManager.primaryColor, fontSize: 18, fontWeight: FontWeight.w400),
-                      )
-                    ],
-                  ),
-                )),
-              ],
-            )
-          ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
